@@ -1,4 +1,9 @@
-export default function Contact({ name, number, onDelete }) {
+import { useDispatch } from 'react-redux';
+import { contactsActions } from '../../redux/contactsSlice';
+
+export default function Contact({ name, number, id }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="box contact">
       <div>
@@ -11,7 +16,11 @@ export default function Contact({ name, number, onDelete }) {
           <span>{number}</span>
         </div>
       </div>
-      <button style={{ marginLeft: '20px' }} type="button" onClick={onDelete}>
+      <button
+        style={{ marginLeft: '20px' }}
+        type="button"
+        onClick={() => dispatch(contactsActions.deleteContact(id))}
+      >
         Delete
       </button>
     </div>
